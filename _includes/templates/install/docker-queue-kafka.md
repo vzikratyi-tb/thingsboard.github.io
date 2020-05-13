@@ -42,14 +42,17 @@ services:
     depends_on:
       - kafka
     ports:
-      - "8080:9090"
+      - "9090:9090"
       - "1883:1883"
       - "5683:5683/udp"
     environment:
       TB_QUEUE_TYPE: kafka
-      TB_KAFKA_SERVERS: kafka:9092
+      TB_KAFKA_SERVERS: kafka:9092  
     volumes:
-      - ~/.mytb-data:/data
-      - ~/.mytb-logs:/var/log/thingsboard
+      - mytb-data:/data
+      - mytb-logs:/var/log/thingsboard
+volumes:
+  mytb-data:
+  mytb-logs:
 ```
 {: .copy-code}

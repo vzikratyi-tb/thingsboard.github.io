@@ -16,7 +16,7 @@ services:
     restart: always
     image: "thingsboard/tb-postgres"
     ports:
-      - "8080:9090"
+      - "9090:9090"
       - "1883:1883"
       - "5683:5683/udp"
     environment:
@@ -25,7 +25,10 @@ services:
       TB_QUEUE_SERVICE_BUS_SAS_KEY_NAME: YOUR_SAS_KEY_NAME
       TB_QUEUE_SERVICE_BUS_SAS_KEY: YOUR_SAS_KEY
     volumes:
-      - ~/.mytb-data:/data
-      - ~/.mytb-logs:/var/log/thingsboard
+      - mytb-data:/data
+      - mytb-logs:/var/log/thingsboard
+volumes:
+  mytb-data:
+  mytb-logs:
 ```
 {: .copy-code}

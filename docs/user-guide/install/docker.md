@@ -53,11 +53,11 @@ RabbitMQ <small>(for small on-prem installations)</small>%,%rabbitmq%,%templates
 
 Where: 
     
-- `8080:9090`            - connect local port 8080 to exposed internal HTTP port 9090
+- `9090:9090`            - connect local port 9090 to exposed internal HTTP port 9090
 - `1883:1883`            - connect local port 1883 to exposed internal MQTT port 1883    
 - `5683:5683`            - connect local port 5683 to exposed internal COAP port 5683 
-- `~/.mytb-data:/data`   - mounts the host's dir `~/.mytb-data` to ThingsBoard DataBase data directory
-- `~/.mytb-logs:/var/log/thingsboard`   - mounts the host's dir `~/.mytb-logs` to ThingsBoard logs directory
+- `mytb-data:/data`      - mounts the volume `mytb-data` (host's dir managed by Docker) to ThingsBoard DataBase data directory
+- `mytb-logs:/var/log/thingsboard`   - mounts the volume `mytb-logs` to ThingsBoard logs directory
 - `mytb`             - friendly local name of this machine
 - `restart: always`        - automatically start ThingsBoard in case of system reboot and restart in case of failure.
 - `image: thingsboard/tb-postgres`          - docker image, can be also `thingsboard/tb-cassandra` or `thingsboard/tb`
@@ -73,7 +73,7 @@ docker-compose up
 {: .copy-code}
 
     
-After executing this command you can open `http://{your-host-ip}:8080` in you browser (for ex. `http://localhost:8080`). You should see ThingsBoard login page.
+After executing this command you can open `http://{your-host-ip}:9090` in you browser (for ex. `http://localhost:9090`). You should see ThingsBoard login page.
 Use the following default credentials:
 
 - **Systen Administrator**: sysadmin@thingsboard.org / sysadmin
@@ -90,7 +90,7 @@ In case of any issues you can examine service logs for errors.
 For example to see ThingsBoard node logs execute the following command:
 
 ```
-docker-compose logs -f mytbpe
+docker-compose logs -f mytb
 ```
 {: .copy-code}
 
@@ -115,15 +115,18 @@ In order to update to the latest image, execute the following commands:
 ```
 docker pull thingsboard/tb-postgres
 docker-compose stop
-docker run -it -v ~/.mytb-data:/data --rm thingsboard/tb-postgres upgrade-tb.sh
+docker run -it ---mount source=tb_data,target=/data --rm thingsboard/tb-postgres upgrade-tb.sh
 docker-compose rm mytb
 docker-compose up
 ```
 {: .copy-code}
 
 **NOTE**: if you use different database change image name in all commands from `thingsboard/tb-postgres` to `thingsboard/tb-cassandra` or `thingsboard/tb` correspondingly.
+
+**NOTE**: replace volume `mytb-data` with the volume used during container creation. 
+
+**NOTE**: if you have used one database and want to try different, then remove the current docker container using `docker-compose rm` command and use different volume for `/data` in `docker-compose.yml`.
  
-**NOTE**: replace host's directory `~/.mytb-data` with directory used during container creation. 
 
 ## Troubleshooting
 

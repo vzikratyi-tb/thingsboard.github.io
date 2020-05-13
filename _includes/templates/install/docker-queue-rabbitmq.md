@@ -17,7 +17,7 @@ services:
     restart: always
     image: "thingsboard/tb-postgres"
     ports:
-      - "8080:9090"
+      - "9090:9090"
       - "1883:1883"
       - "5683:5683/udp"
     environment:
@@ -27,7 +27,10 @@ services:
       TB_QUEUE_RABBIT_MQ_HOST: localhost
       TB_QUEUE_RABBIT_MQ_PORT: 5672
     volumes:
-      - ~/.mytb-data:/data
-      - ~/.mytb-logs:/var/log/thingsboard
+      - mytb-data:/data
+      - mytb-logs:/var/log/thingsboard
+volumes:
+  mytb-data:
+  mytb-logs:
 ```
 {: .copy-code}
