@@ -53,7 +53,7 @@ RabbitMQ <small>(for small on-prem installations)</small>%,%rabbitmq%,%templates
 
 Where: 
     
-- `9090:9090`            - connect local port 9090 to exposed internal HTTP port 9090
+- `8080:9090`            - connect local port 8080 to exposed internal HTTP port 9090
 - `1883:1883`            - connect local port 1883 to exposed internal MQTT port 1883    
 - `5683:5683`            - connect local port 5683 to exposed internal COAP port 5683 
 - `mytb-data:/data`      - mounts the volume `mytb-data` (host's dir managed by Docker) to ThingsBoard DataBase data directory
@@ -73,7 +73,7 @@ docker-compose up
 {: .copy-code}
 
     
-After executing this command you can open `http://{your-host-ip}:9090` in you browser (for ex. `http://localhost:9090`). You should see ThingsBoard login page.
+After executing this command you can open `http://{your-host-ip}:8080` in you browser (for ex. `http://localhost:8080`). You should see ThingsBoard login page.
 Use the following default credentials:
 
 - **Systen Administrator**: sysadmin@thingsboard.org / sysadmin
