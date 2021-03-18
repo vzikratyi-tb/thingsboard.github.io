@@ -441,3 +441,10 @@ ThingsBoard authors have prepared several tutorials to help you get started with
   * [**Send messages between related devices**](/docs/user-guide/rule-engine-2-0/tutorials/rpc-reply-tutorial/)
   
 See more tutorials [here](https://thingsboard.io/docs/guides/).
+
+## Troubleshooting
+
+If you are using Kafka queue for processing messages, ThingsBoard provides the ability to monitor if the rate of pushing messages to the Kafka is faster than rate of consuming and processing them (in such case you will have a growing latency for message processing).
+To enable this functionality, you need to ensure that 'queue.kafka.consumer-stats.enabled' property is 'true' (see 'queue.kafka.consumer-stats' section of the [Configuration properties](/docs/user-guide/install/config/#thingsboard-core-settings))
+
+Once Kafka consumer-stats are enabled, you will see logs about offset lag for consumer groups.
