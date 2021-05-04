@@ -45,3 +45,10 @@
   icon: /images/trendz-icon.svg
   path: /docs/trendz/
   getStarted: /docs/trendz/getting-started/
+- title: MQTT Broker
+  fulltitle: MQTT Broker
+  description: MQTT Broker Documentation
+  tag: mqttbroker
+  icon: /images/gateway-icon.svg
+  path: /docs/mqtt-broker/
+  getStarted: /docs/mqtt-broker/getting-started/
